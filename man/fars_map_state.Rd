@@ -9,7 +9,7 @@ fars_map_state(state.num, year)
 \arguments{
 \item{state.num}{integer value representing a state in the FARS dataset (valid inputs: 1-56)}
 
-\item{years}{integer value representing the year you want accidents plotted for}
+\item{year}{integer value representing the year you want accidents plotted for}
 }
 \value{
 A map plot of accidents in one state for one year
