@@ -1,0 +1,102 @@
+---
+title: "FARS Vignette"
+author: "George Harrelson"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{FARS Package}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+## Filename Creation
+
+The *make_filename()* function creates the filename of a dataset based on the year you input. The output from this
+function can be used by the *fars_read()* function.
+
+Note: There is no error checking here, so it is possible to put in a year that will not end up reading in a dataset.
+
+### Parameters
+
+|**Parameters** |**Description**                                                 |   
+|---------------|----------------------------------------------------------------|
+|year| A numeric input used to define a filename you want to read in.|
+
+### Example
+
+```{r eval = FALSE}
+make_filename(2015)
+```
+
+## Read Data In
+
+The *fars_read()* function reads in data from the Fatality Analysis Reporting System (FARS). The input is a filename.
+If the filename cannot be found then an error will be returned, otherwise the file will be read in.
+
+### Parameters
+
+|**Parameters** |**Description**                                   |
+|---------------|--------------------------------------------------|
+|filename| A string input containing the filename you want read in.|
+
+### Example
+
+```{r eval = FALSE}
+fars_read("accident_2015.csv.bz2")
+```
+
+## Summarize Data by Month/Year
+
+The *fars_read_years()* function reads in multiple years of data and summarizes accidents by month and year. This function will return a list for each year of data read in. Invalid year inputs will generate a warning message, but as long as there is at least one valid year then this function will return a list.
+
+### Parameters
+
+|**Parameters** |**Description**                                                  |
+|---------------|-----------------------------------------------------------------|
+|years| A list of numeric values for the years you want to summarize FARS data for|
+
+### Example
+
+```{r eval = FALSE}
+fars_read_years(c(2014,2015))
+```
+
+## Summarize Data by Year
+
+The *fars_summarize_years()* function will summarize the specified data by month and year in a table. Invalid year inputs will generate a warning message, but as long as there is at least one valid year input then this function will return a table.
+
+### Parameters
+
+|**Parameters** |**Description**                                                  |
+|---------------|-----------------------------------------------------------------|
+|years| A list of numeric values for the years you want to summarize FARS data for|
+
+### Example
+
+```{r eval = FALSE}
+fars_summarize_years(c(2014,2015))
+```
+
+## State Maps
+
+The *fars_map_state()* function will output a graphical map showing where within a state fatal accidents occur. State numbers outside of the valid range (1-56) will generate an error. States with no accidents to plot will generate a warning message. This function will also generate errors for invalid year inputs.
+
+### Parameters
+
+|**Parameters** |**Description**                                                  |
+|---------------|-----------------------------------------------------------------|
+|state.num| A numeric value that represents the state you want to plot data for   |
+|years| A list of numeric values for the years you want to summarize FARS data for |
+
+### Example
+
+```{r eval = FALSE}
+fars_map_state(45, 2015)
+```
