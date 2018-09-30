@@ -3,7 +3,7 @@
 #' This function will create a map plot of accidents in a state for one year
 #'
 #' @param state.num integer value representing a state in the FARS dataset (valid inputs: 1-56)
-#' @param years integer value representing the year you want accidents plotted for
+#' @param year integer value representing the year you want accidents plotted for
 #'
 #' @return A map plot of accidents in one state for one year
 #'
