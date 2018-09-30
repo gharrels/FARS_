@@ -1,4 +1,4 @@
-library(testthat)
+require(testthat)
 library(FARS)
 
 test_that("fars_read returns a data frame with valid input", {
